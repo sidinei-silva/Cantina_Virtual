@@ -5,9 +5,9 @@
         <div class="col-md-10 col-md-push-1">
           <div class="row" id="productMain">
             <div class="col-sm-6">
-              <div id="mainImage">
+              <div id="mainImage" class="text-center">
                 <% if @produto.image.attached? %>
-                  <%= image_tag @produto.image, class: "img-responsive" %>
+                  <%= image_tag @produto.image, class: "img-fluid rounded mx-auto d-block" %>
                 <% end %>
               </div>
             </div>
@@ -44,6 +44,7 @@
                 <div class="text-center">
                   <h3 class="">Total:</h3>
                   <h2 id="valorTotal"> R$: </h2>
+                  <%= hidden_field_tag 'valor_total_item' %>
                 </div>
                 <div class="container-fluid">
                   <div class="actions text-center">
@@ -51,8 +52,6 @@
                       <i class="fa fa-shopping-cart"></i> Add to cart
                     <% end %>
                   </div>
-
-                  </p>
                 </div>
               </div>
             </div>
@@ -82,22 +81,23 @@
   </div>
 <% end %>
 <script type="text/javascript" charset="utf-8">
+
     $(function () {
-
         let valorTotal = <%= @produto.preco_produto %>;
-        $("#valorTotal").text("R$: " + valorTotal);
-
+        let preco_acompanhamento = parseFloat($("#preco_acompanhamento").text());
+        $("#valorTotal").text("R$: " + valorTotal );
+        $("#valor_total_item").val(valorTotal);
         $('.form-group input[type=checkbox]').click(function () {
-            let preco_acompanhamento = parseFloat($("#preco_acompanhamento").text());
-
             if ($(this).is(':checked')) {
 
-                valorTotal = valorTotal + preco_acompanhamento;
+                valorTotal = valorTotal + preco_acompanhamento ;
                 $("#valorTotal").text("R$: " + valorTotal);
+                $("#valor_total_item").val(valorTotal);
             }
             else {
-                valorTotal = valorTotal - preco_acompanhamento;
+                valorTotal = valorTotal - preco_acompanhamento ;
                 $("#valorTotal").text("R$: " + valorTotal);
+                $("#valor_total_item").val(valorTotal);
             }
         });
     });

@@ -3,75 +3,100 @@
     <div class="container">
       <div class="col-md-10 col-md-push-1" id="basket">
         <div class="box">
-          <form method="post" action="checkout1.html">
-            <h1>Carrinho de Compras</h1>
-            <p class="text-muted">Você tem <%= session[:carrinho].count if defined? (session[:carrinho]) %>
-              item(s) no seu carrinho.</p>
-            <div class="table-responsive">
-              <table class="table">
-                <thead>
 
+          <h1>Carrinho de Compras</h1>
+          <p class="text-muted">Você tem <%= session[:carrinho].count if defined? (session[:carrinho]) %>
+            item(s) no seu carrinho.</p>
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+              <tr>
+                <th colspan="2">Produto</th>
+                <th>Preço unitario</th>
+                <th>Acompanhamentos</th>
+                <th colspan="2">Total</th>
+              </tr>
+              </thead>
+              <tbody>
+              <% valor_total_compra = 0 %>
+              <% @produtos.each_with_index do |produto, count_loop| %>
                 <tr>
-                  <th colspan="2">Produto</th>
-                  <th>Quantidade</th>
-                  <th>Preço unitario</th>
-                  <th>Acompanhamentos</th>
-                  <th colspan="2">Total</th>
+                  <td>
+                    <% if produto.image.attached? %>
+                      <%= link_to catalogo_detalhes_path(produto) do %>
+                        <%= image_tag produto.image, class: "img-responsive" %>
+                      <% end %>
+                    <% end %>
+                  </td>
+                  <td>
+                    <%= produto.nome_produto %>
+                  </td>
+                  <td>R$: <%= produto.preco_produto %></td>
+                  <td>
+                    <% valor_total_acompanhamentos = 0 %>
+                    <% @acompanhamentos_item_info[count_loop].each do |acompanhamento| %>
+                      <li>
+                        <%= acompanhamento.nome_acompanhamento %> (+ <%= acompanhamento.preco_acompanhamento %>)
+                        <% valor_total_acompanhamentos = valor_total_acompanhamentos + acompanhamento.preco_acompanhamento %>
+                      </li>
+                    <% end %>
+                  </td>
+                  <td>
+                    R$: <%= valor_total_produto = produto.preco_produto + valor_total_acompanhamentos %>
+                    <% valor_total_compra = valor_total_compra + valor_total_produto %>
+                  </td>
+                  <td><a href="#"><i class="fa fa-trash-o"></i></a>
+                  </td>
                 </tr>
-                </thead>
-                <tbody>
-                <% @produtos.each_with_index do |produto, count_loop| %>
-                  <tr>
-                    <td>
-                      <% if produto.image.attached? %>
-                        <%= link_to catalogo_detalhes_path(produto) do %>
-                          <%= image_tag produto.image, class: "img-responsive" %>
-                        <% end %>
-                      <% end %>
-                    </td>
-                    <td>
-                      <%= produto.nome_produto %>
-                    </td>
-                    <td>
-                      <input type="number" value="2" class="form-control">
-                    </td>
-                    <td>R$: <%= produto.preco_produto %></td>
-                    <td>
-                      <% @acompanhamentos_item_info[count_loop].each do |acompanhamento| %>
-                        <li>
-                          <%=acompanhamento.nome_acompanhamento %> (+ <%=acompanhamento.preco_acompanhamento%>)
-                        </li>
-                      <% end %>
-                    </td>
-                    <td></td>
-                    <td><a href="#"><i class="fa fa-trash-o"></i></a>
-                    </td>
-                  </tr>
+              <% end %>
+              </tbody>
+              <tfoot>
+              <tr>
+                <th colspan="5">Total</th>
+                <th colspan="2">R$ <%= valor_total_compra %></th>
+              </tr>
+              </tfoot>
+            </table>
+
+          </div>
+          <!-- /.table-responsive -->
+
+          <div class="box-footer">
+            <div class="pull-left">
+              <%= link_to catalogo_index_path, class: "btn btn-default", :"data-turbolinks" => false do %>
+                <i class="fa fa-chevron-left"></i> Continue comprando
+              <% end %>
+            </div>
+
+            <%= form_with(model: Pedido, local: true) do |form| %>
+              <% form.hidden_field :status_pedido, value: "Pedido enviado" %>
+              <% form.hidden_field :total_pedido, value: valor_total_compra %>
+              <% form.hidden_field :cliente_id, value: current_cliente %>
+              <!--Item Pedido-->
+              <%= form.fields_for :item_pedidos do |item_pedidos_form| %>
+                <% item_pedidos_form.hidden_field :total_item_pedido, value: "valor_total_produto" %>
+                <% item_pedidos_form.hidden_field :produto_id, value: "produto.id" %>
+
+                <!-- Item Acompanhamento -->
+                <%= item_pedidos_form.fields_for :item_acompanhamento do |item_acompanhamento_form| %>
+                  <% item_acompanhamento_form.hidden_field :preco_item_acompanhamento, value: "acompanhamento.preco_acompanhamento" %>
+                  <% item_acompanhamento_form.hidden_field :acompanhamento_id, value: "acompanhamento.id" %>
                 <% end %>
-                </tbody>
-                <tfoot>
-                <tr>
-                  <th colspan="5">Total</th>
-                  <th colspan="2">$446.00</th>
-                </tr>
-                </tfoot>
-              </table>
+              <% end %>
 
-            </div>
-            <!-- /.table-responsive -->
-
-            <div class="box-footer">
-              <div class="pull-left">
-                <a href="category.html" class="btn btn-default"><i class="fa fa-chevron-left"></i> Continue shopping</a>
-              </div>
               <div class="pull-right">
-                <button class="btn btn-default"><i class="fa fa-refresh"></i> Update basket</button>
-                <button type="submit" class="btn btn-primary">Proceed to checkout <i class="fa fa-chevron-right"></i>
-                </button>
+                <%= button_tag "Fazer pedido", class: "btn btn-primary " do %>
+                  Fazer pedido <i class="fa fa-chevron-right"></i>
+                <% end %>
               </div>
+            <% end %>
+            <div class="pull-right"> &emsp; </div>
+            <div class="pull-right">
+              <button class="btn btn-default"><i class="fa fa-refresh"></i> Update basket</button>
             </div>
 
-          </form>
+          </div>
+
 
         </div>
         <!-- /.box -->

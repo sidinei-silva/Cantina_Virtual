@@ -109,7 +109,7 @@ _________________________________________________________ -->
     <div class="navbar-collapse collapse" id="navigation">
 
       <ul class="nav navbar-nav navbar-left">
-        <li class="active"> <%= link_to("Home", root_url , :"data-turbolinks" => false) %></li>
+        <li class="active"> <%= link_to("Home", root_url , :"data-turbolinks" => false ) %></li>
       </ul>
 
     </div>
@@ -137,8 +137,13 @@ _________________________________________________________ -->
 
 <!-- *** NAVBAR END *** -->
 <!-- *** YIELD *** -->
-<p class="notice"><%= notice %></p>
-<p class="alert"><%= alert %></p>
+<% if notice != nil %>
+  <p class="notice alert alert-info text-center"><%= notice %></p>
+<% end %>
+<% if alert != nil %>
+  <p class="alert alert alert-danger text-center"><%= alert %></p>
+<% end %>
+
 <%= yield %>
 
 <!-- /#yield -->
