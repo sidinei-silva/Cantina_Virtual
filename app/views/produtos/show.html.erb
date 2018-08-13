@@ -1,0 +1,36 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Nome produto:</strong>
+  <%= @produto.nome_produto %>
+</p>
+
+<p>
+  <strong>Descricao produto:</strong>
+  <%= @produto.descricao_produto %>
+</p>
+
+<p>
+  <strong>Preco produto:</strong>
+  <%= @produto.preco_produto %>
+</p>
+
+<p>
+  <strong>Esta ativo:</strong>
+  <%= @produto.esta_ativo %>
+</p>
+
+
+<!-- app/views/posts/show.html.erb -->
+<% if @produto.image.attached? %>
+<!-- @post.image.present? will always return true, use attached? to check presence -->
+  <p>
+    <strong>Image:</strong>
+    <br>
+    <%= image_tag @produto.image %>
+  </p>
+<% end %>
+
+
+<%= link_to 'Edit', edit_produto_path(@produto) %> |
+<%= link_to 'Back', produtos_path %>

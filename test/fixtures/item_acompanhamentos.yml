@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  preco_item_acompanhamento: 9.99
+  item_pedido: one
+  acompanhamento: one
+
+two:
+  preco_item_acompanhamento: 9.99
+  item_pedido: two
+  acompanhamento: two

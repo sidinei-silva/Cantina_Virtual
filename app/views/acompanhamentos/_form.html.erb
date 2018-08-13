@@ -1,0 +1,37 @@
+<%= form_with(model: acompanhamento, local: true) do |form| %>
+  <% if acompanhamento.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(acompanhamento.errors.count, "error") %> prohibited this acompanhamento from being saved:</h2>
+
+      <ul>
+      <% acompanhamento.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :preco_acompanhamento %>
+    <%= form.text_field :preco_acompanhamento %>
+  </div>
+
+  <div class="field">
+    <%= form.label :nome_acompanhamento %>
+    <%= form.text_field :nome_acompanhamento %>
+  </div>
+
+  <div class="field">
+    <%= form.label :esta_ativo %>
+    <%= form.check_box :esta_ativo %>
+  </div>
+
+  <div class="field">
+    <%= form.label :produto_id %>
+    <%= form.text_field :produto_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Preco acompanhamento:</strong>
+  <%= @acompanhamento.preco_acompanhamento %>
+</p>
+
+<p>
+  <strong>Nome acompanhamento:</strong>
+  <%= @acompanhamento.nome_acompanhamento %>
+</p>
+
+<p>
+  <strong>Esta ativo:</strong>
+  <%= @acompanhamento.esta_ativo %>
+</p>
+
+<p>
+  <strong>Produto:</strong>
+  <%= @acompanhamento.produto %>
+</p>
+
+
+<%= link_to 'Edit', edit_acompanhamento_path(@acompanhamento) %> |
+<%= link_to 'Back', acompanhamentos_path %>

@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  preco_acompanhamento: 9.99
+  nome_acompanhamento: MyString
+  esta_ativo: false
+  produto: one
+
+two:
+  preco_acompanhamento: 9.99
+  nome_acompanhamento: MyString
+  esta_ativo: false
+  produto: two

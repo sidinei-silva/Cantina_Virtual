@@ -1,0 +1,32 @@
+<%= form_with(model: pedido, local: true) do |form| %>
+  <% if pedido.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(pedido.errors.count, "error") %> prohibited this pedido from being saved:</h2>
+
+      <ul>
+      <% pedido.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :status_pedido %>
+    <%= form.text_field :status_pedido %>
+  </div>
+
+  <div class="field">
+    <%= form.label :total_pedido %>
+    <%= form.text_field :total_pedido %>
+  </div>
+
+  <div class="field">
+    <%= form.label :cliente_id %>
+    <%= form.text_field :cliente_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

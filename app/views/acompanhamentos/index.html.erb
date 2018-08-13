@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Acompanhamentos</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Preco acompanhamento</th>
+      <th>Nome acompanhamento</th>
+      <th>Esta ativo</th>
+      <th>Produto</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @acompanhamentos.each do |acompanhamento| %>
+      <tr>
+        <td><%= acompanhamento.preco_acompanhamento %></td>
+        <td><%= acompanhamento.nome_acompanhamento %></td>
+        <td><%= acompanhamento.esta_ativo %></td>
+        <td><%= acompanhamento.produto %></td>
+        <td><%= link_to 'Show', acompanhamento %></td>
+        <td><%= link_to 'Edit', edit_acompanhamento_path(acompanhamento) %></td>
+        <td><%= link_to 'Destroy', acompanhamento, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Acompanhamento', new_acompanhamento_path %>
