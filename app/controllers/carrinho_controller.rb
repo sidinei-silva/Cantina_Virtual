@@ -7,6 +7,7 @@
 #     {All values the acompanhamento from session in database}
 #
 class CarrinhoController < ApplicationController
+  before_action :authenticate_cliente!
 
   def index
     unless params[:item].nil?

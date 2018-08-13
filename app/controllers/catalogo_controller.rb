@@ -1,4 +1,5 @@
 class CatalogoController < ApplicationController
+  before_action :authenticate_cliente!
   def index
     @produtos = Produto.all
   end

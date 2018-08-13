@@ -85,3 +85,5 @@ class PedidosController < ApplicationController
     )
   end
 end
+
+item_pedido.item_acompanhamentos.build(valor_item_acompanhamento: 1, acompanhamento_id: 1)
