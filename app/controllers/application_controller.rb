@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  #before_action :authenticate_cliente!
+  before_action :authenticate_cliente!
   helper_method :resource_name, :resource, :devise_mapping, :resource_class
 
   def resource_name

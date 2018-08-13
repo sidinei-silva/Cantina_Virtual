@@ -15,6 +15,8 @@ class PedidosController < ApplicationController
   # GET /pedidos/new
   def new
     @pedido = Pedido.new
+    @item_pedidos = @pedido.item_pedidos.build
+    @item_pedidos.item_acompanhamentos.build
   end
 
   # GET /pedidos/1/edit
@@ -62,13 +64,24 @@ class PedidosController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_pedido
-      @pedido = Pedido.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_pedido
+    @pedido = Pedido.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def pedido_params
-      params.require(:pedido).permit(:status_pedido, :total_pedido, :cliente_id)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def pedido_params
+    params.require(:pedido).permit(
+      :status_pedido,
+      :total_pedido,
+      :cliente_id,
+      item_pedidos_attributes:
+      [
+        :quantidade_item_pedido,
+        :total_item_pedido,
+        :produto_id,
+        item_acompanhamento_attributes: [:preco_item_acompanhamento]
+      ]
+    )
+  end
 end
