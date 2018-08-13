@@ -1,9 +1,10 @@
 Rails.application.routes.draw do
 
-  get 'carrinho/index'
   root 'catalogo#index'
   get 'catalogo/index'
   get 'catalogo/detalhes'
+  get 'carrinho/index'
+  post 'carrinho/index'
 
   devise_for :clientes
   devise_for :admin_users, ActiveAdmin::Devise.config

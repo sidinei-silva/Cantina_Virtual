@@ -1,2 +1,88 @@
-<h1>Carrinho#index</h1>
-<p>Find me in app/views/carrinho/index.html.erb</p>
+<div id="all">
+  <div id="content">
+    <div class="container">
+      <div class="col-md-10 col-md-push-1" id="basket">
+        <div class="box">
+          <form method="post" action="checkout1.html">
+            <h1>Carrinho de Compras</h1>
+            <p class="text-muted">Você tem <%= session[:carrinho].count if defined? (session[:carrinho]) %>
+              item(s) no seu carrinho.</p>
+            <div class="table-responsive">
+              <table class="table">
+                <thead>
+
+                <tr>
+                  <th colspan="2">Produto</th>
+                  <th>Quantidade</th>
+                  <th>Preço unitario</th>
+                  <th>Acompanhamentos</th>
+                  <th colspan="2">Total</th>
+                </tr>
+                </thead>
+                <tbody>
+                <% @produtos.each_with_index do |produto, count_loop| %>
+                  <tr>
+                    <td>
+                      <% if produto.image.attached? %>
+                        <%= link_to catalogo_detalhes_path(produto) do %>
+                          <%= image_tag produto.image, class: "img-responsive" %>
+                        <% end %>
+                      <% end %>
+                    </td>
+                    <td>
+                      <%= produto.nome_produto %>
+                    </td>
+                    <td>
+                      <input type="number" value="2" class="form-control">
+                    </td>
+                    <td>R$: <%= produto.preco_produto %></td>
+                    <td>
+                      <% @acompanhamentos_item_info[count_loop].each do |acompanhamento| %>
+                        <li>
+                          <%=acompanhamento.nome_acompanhamento %> (+ <%=acompanhamento.preco_acompanhamento%>)
+                        </li>
+                      <% end %>
+                    </td>
+                    <td></td>
+                    <td><a href="#"><i class="fa fa-trash-o"></i></a>
+                    </td>
+                  </tr>
+                <% end %>
+                </tbody>
+                <tfoot>
+                <tr>
+                  <th colspan="5">Total</th>
+                  <th colspan="2">$446.00</th>
+                </tr>
+                </tfoot>
+              </table>
+
+            </div>
+            <!-- /.table-responsive -->
+
+            <div class="box-footer">
+              <div class="pull-left">
+                <a href="category.html" class="btn btn-default"><i class="fa fa-chevron-left"></i> Continue shopping</a>
+              </div>
+              <div class="pull-right">
+                <button class="btn btn-default"><i class="fa fa-refresh"></i> Update basket</button>
+                <button type="submit" class="btn btn-primary">Proceed to checkout <i class="fa fa-chevron-right"></i>
+                </button>
+              </div>
+            </div>
+
+          </form>
+
+        </div>
+        <!-- /.box -->
+
+
+      </div>
+      <!-- /.col-md-9 -->
+
+    </div>
+    <!-- /.container -->
+  </div>
+  <!-- /#content -->
+</div>
+<!-- /#all -->
