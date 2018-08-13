@@ -23,8 +23,36 @@
 
   <div class="field">
     <%= form.label :cliente_id %>
-    <%= form.text_field :cliente_id %>
+    <%# form.text_field :cliente_id %>
+    <%= collection_select(:pedido, :cliente_id, Cliente.all, :id, :email) %>
   </div>
+
+  <%= form.fields_for :item_pedidos do |item_pedidos_form| %>
+    <div class="field">
+      <%= item_pedidos_form.label :total_item_pedido %>
+      <%= item_pedidos_form.number_field :total_item_pedido %>
+    </div>
+
+    <div class="field">
+      <%= item_pedidos_form.label :produto_id %>
+      <%= item_pedidos_form.number_field :produto_id %>
+    </div>
+
+    <!-- Form Item Acompanhamento -->
+    <%= item_pedidos_form.fields_for :item_acompanhamentos do |item_acompanhamento_form| %>
+      <div class="field">
+        <%= item_acompanhamento_form.label :preco_item_acompanhamento %>
+        <%= item_acompanhamento_form.number_field :preco_item_acompanhamento %>
+      </div>
+
+      <div class="field">
+        <%= item_acompanhamento_form.label :acompanhamento_id %>
+        <%= item_acompanhamento_form.number_field :acompanhamento_id %>
+      </div>
+
+    <% end %>
+    <!-- /@acompanhamentos-->
+  <% end %>
 
   <div class="actions">
     <%= form.submit %>

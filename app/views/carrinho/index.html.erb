@@ -69,35 +69,37 @@
               <% end %>
             </div>
             <!--Form Pedido-->
-            <%= form_with(model: @pedido, local: true) do |form| %>
-              <%= form.hidden_field :status_pedido, value: "Pedido enviado" %>
-              <%= form.hidden_field :total_pedido, value: valor_total_compra %>
-              <%= form.hidden_field :cliente_id, value: current_cliente.id %>
-              <!-- @produtos-->
-              <%# @produtos.each_with_index do |produto, count_loop| %>
+            <%= form_with(model: Pedido, local: true) do |form| %>
+              <%= form.fields_for :pedido do |pedido_form| %>
+                <%= pedido_form.hidden_field :status_pedido, value: "Pedido enviado" %>
+                <%= pedido_form.hidden_field :total_pedido, value: valor_total_compra %>
+                <%= pedido_form.hidden_field :cliente_id, value: "1" %>
+                <!-- @produtos-->
+                <%# @produtos.each_with_index do |produto, count_loop| %>
                 <!--Form Produto Pedido-->
-                <%= form.fields_for :item_pedidos do |item_pedidos_form| %>
+                <%= pedido_form.fields_for :item_pedidos do |item_pedidos_form| %>
                   <%= item_pedidos_form.hidden_field :total_item_pedido, value: "3" %>
                   <%= item_pedidos_form.hidden_field :produto_id, value: "1" %>
                   <!-- @acompanhamentos-->
                   <%# @acompanhamentos_item_info[count_loop].each do |acompanhamento| %>
-                    <!-- Form Item Acompanhamento -->
-                    <%= item_pedidos_form.fields_for :item_acompanhamento do |item_acompanhamento_form| %>
-                      <%= item_acompanhamento_form.hidden_field :preco_item_acompanhamento, value: "3" %>
-                      <%= item_acompanhamento_form.hidden_field :acompanhamento_id, value: "1" %>
-                    <% end %>
-                    <!-- /Form Item Acompanhamento -->
+                  <!-- Form Item Acompanhamento -->
+                  <%= item_pedidos_form.fields_for :item_acompanhamento do |item_acompanhamento_form| %>
+                    <%= item_acompanhamento_form.hidden_field :preco_item_acompanhamento, value: "3" %>
+                    <%= item_acompanhamento_form.hidden_field :acompanhamento_id, value: "1" %>
+                  <% end %>
+                  <!-- /Form Item Acompanhamento -->
                   <%# end %>
                   <!-- /@acompanhamentos-->
-               <% end %>
-                <!--/Form Produto Pedido-->
-              <%# end %>
-              <!-- /@produtos-->
-              <div class="pull-right">
-                <%= button_tag "Fazer pedido", class: "btn btn-primary " do %>
-                  Fazer pedido <i class="fa fa-chevron-right"></i>
                 <% end %>
-              </div>
+                <!--/Form Produto Pedido-->
+                <%# end %>
+                <!-- /@produtos-->
+                <div class="pull-right">
+                  <%= button_tag "Fazer pedido", class: "btn btn-primary " do %>
+                    Fazer pedido <i class="fa fa-chevron-right"></i>
+                  <% end %>
+                </div>
+              <% end %>
             <% end %>
             <div class="pull-right"> &emsp; </div>
             <div class="pull-right">

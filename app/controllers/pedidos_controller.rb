@@ -80,7 +80,7 @@ class PedidosController < ApplicationController
         #:quantidade_item_pedido,
         :total_item_pedido,
         :produto_id,
-        item_acompanhamentos_attributes: [:preco_item_acompanhamento,:acompanhamento_id]
+        item_acompanhamentos_attributes: [:preco_item_acompanhamento, :acompanhamento_id]
       ]
     )
   end
