@@ -18,7 +18,7 @@ ActiveAdmin.register Acompanhamento do
     link_to 'Voltar', admin_acompanhamentos_path
   end
 
-  form  do |form|
+  form do |form|
     form.semantic_errors *form.object.errors.keys
     form.inputs "Details" do
       form.input :produto_id, :as => :select, :collection => Produto.all.collect {|produto| [produto.nome_produto, produto.id]}

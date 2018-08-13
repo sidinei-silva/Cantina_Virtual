@@ -16,7 +16,6 @@ class CarrinhoController < ApplicationController
       items[:acompanhamento_id] = params[:item][:acompanhamento_id]
       carrinho_insert << items
     end
-
     capture_produtos
     capture_acompanhamentos
   end
