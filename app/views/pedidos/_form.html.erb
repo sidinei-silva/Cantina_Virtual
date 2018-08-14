@@ -26,7 +26,6 @@
     <%# form.text_field :cliente_id %>
     <%= collection_select(:pedido, :cliente_id, Cliente.all, :id, :email) %>
   </div>
-
   <%= form.fields_for :item_pedidos do |item_pedidos_form| %>
     <div class="field">
       <%= item_pedidos_form.label :total_item_pedido %>

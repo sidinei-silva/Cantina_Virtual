@@ -10,6 +10,9 @@ class CarrinhoController < ApplicationController
   before_action :authenticate_cliente!
 
   def index
+    @pedido = Pedido.new
+    @item_pedidos = @pedido.item_pedidos.build
+    @item_pedidos.item_acompanhamentos.build
     unless params[:item].nil?
       items = Hash.new
       items[:produto_id] = params[:item][:produto_id]
