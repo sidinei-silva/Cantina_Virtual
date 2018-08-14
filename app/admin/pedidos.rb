@@ -12,4 +12,8 @@ ActiveAdmin.register Pedido do
 #   permitted
 # end
 
+  actions :index, :edit, :show, :update
+  action_item do
+    link_to 'Voltar', admin_dashboard_path
+  end
 end
