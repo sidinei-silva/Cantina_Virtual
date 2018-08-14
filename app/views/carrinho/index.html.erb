@@ -5,9 +5,10 @@
         <div class="box">
 
           <h1>Carrinho de Compras</h1>
-          <p class="text-muted">Você tem <%= session[:carrinho].count if defined? (session[:carrinho]) %>
+          <p class="text-muted">Você tem <%= session[:carrinho].count if defined? (session[:carrinho]).count %>
             item(s) no seu carrinho.</p>
           <div class="table-responsive">
+            <% if defined? session[:carrinho].count  %>
             <table class="table">
               <thead>
               <tr>
@@ -17,9 +18,11 @@
                 <th colspan="2">Total</th>
               </tr>
               </thead>
+              <% if defined? session[:carrinho].count  %>
               <tbody>
               <% valor_total_compra = 0 %>
               <% valor_total_produto = 0 %>
+
               <% @produtos.each_with_index do |produto, count_loop| %>
                 <tr>
                   <td>
@@ -58,6 +61,7 @@
               </tr>
               </tfoot>
             </table>
+            <%end %>
 
           </div>
           <!-- /.table-responsive -->
@@ -125,3 +129,4 @@
   <!-- /#content -->
 </div>
 <!-- /#all -->
+<%end %>

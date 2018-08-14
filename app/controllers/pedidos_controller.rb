@@ -5,11 +5,13 @@ class PedidosController < ApplicationController
   # GET /pedidos.json
   def index
     @pedidos = Pedido.all
+
   end
 
   # GET /pedidos/1
   # GET /pedidos/1.json
   def show
+    @nomes_acompanhamentos = "teste"
   end
 
   # GET /pedidos/new
@@ -30,6 +32,7 @@ class PedidosController < ApplicationController
 
     respond_to do |format|
       if @pedido.save
+        session[:carrinho] = nil
         format.html { redirect_to @pedido, notice: 'Pedido was successfully created.' }
         format.json { render :show, status: :created, location: @pedido }
       else
@@ -61,6 +64,10 @@ class PedidosController < ApplicationController
       format.html { redirect_to pedidos_url, notice: 'Pedido was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def get_name_acompanhamento
+
   end
 
   private

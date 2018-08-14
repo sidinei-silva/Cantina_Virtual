@@ -1,19 +1,78 @@
-<p id="notice"><%= notice %></p>
+<!--<p id="notice"><%#= notice %></p>-->
 
-<p>
-  <strong>Status pedido:</strong>
-  <%= @pedido.status_pedido %>
-</p>
+<!--<p>-->
+<!--  <strong>Status pedido:</strong>-->
+<%#= @pedido.status_pedido %>
+<!--</p>-->
 
-<p>
-  <strong>Total pedido:</strong>
-  <%= @pedido.total_pedido %>
-</p>
+<!--<p>-->
+<!--  <strong>Total pedido:</strong>-->
+<%#= @pedido.total_pedido %>
+<!--</p>-->
 
-<p>
-  <strong>Cliente:</strong>
-  <%= @pedido.cliente %>
-</p>
+<!--<p>-->
+<!--  <strong>Cliente:</strong>-->
+<%#= @pedido.cliente %>
+<!--</p>-->
 
-<%= link_to 'Edit', edit_pedido_path(@pedido) %> |
-<%= link_to 'Back', pedidos_path %>
+
+
+
+
+<%= render 'layouts/sidebar_cliente' %>
+
+<div class="col-md-9" id="customer-order">
+  <div class="box">
+    <h1>Pedido #<%= @pedido.id %></h1>
+
+    <p class="lead">Pedido #<%= @pedido.id %> realizado em
+      <b style="font-size: large" class="font-weight-bold"> 22/06/2013 </b> e atualmente está
+      <b style="font-size: x-large" class="font-weight-bold"><%= @pedido.status_pedido %></b>.</p>
+    <hr>
+
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
+        <tr>
+          <th colspan="2">Produto</th>
+          <th>Preço unitario</th>
+          <th>Acompanhamentos</th>
+          <th>Total</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% @pedido.item_pedidos.each_with_index do |item_pedido, count_loop| %>
+          <tr>
+            <td>
+              <% if item_pedido.produto.image.attached? %>
+                <%= link_to catalogo_detalhes_path(item_pedido.produto) do %>
+                  <%= image_tag item_pedido.produto.image, class: "img-responsive ", width: 50 %>
+                <% end %>
+              <% end %>
+            </td>
+            <td><%= item_pedido.produto.nome_produto %></td>
+            <td>RS: <%= item_pedido.produto.preco_produto %></td>
+            <td>
+
+            </td>
+            <td>R$: <%= item_pedido.total_item_pedido %></td>
+
+          </tr>
+        <% end %>
+        </tbody>
+        <tfoot>
+          <tr>
+            <th colspan="5" class="text-right">Total</th>
+            <th><%= @pedido.total_pedido %></th>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+    <!-- /.table-responsive -->
+
+    <%= link_to 'Back', pedidos_path, class: "btn btn-primary " %>
+  </div>
+
+</div>
+
+

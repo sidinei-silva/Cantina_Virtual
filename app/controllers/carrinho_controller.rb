@@ -19,8 +19,10 @@ class CarrinhoController < ApplicationController
       items[:acompanhamento_id] = params[:item][:acompanhamento_id]
       carrinho_insert << items
     end
-    capture_produtos
-    capture_acompanhamentos
+    if defined? session[:carrinho].count
+      capture_produtos
+      capture_acompanhamentos
+    end
   end
 
   private
@@ -31,7 +33,7 @@ class CarrinhoController < ApplicationController
 
   def capture_produtos
     @produtos = []
-    if defined? session[:carrinho]
+    if defined? session[:carrinho].count
       session[:carrinho].each do |carrinho|
         # :nome (first request) "nome" (refresh)
         @produtos.push(Produto.find(carrinho[:produto_id]))
