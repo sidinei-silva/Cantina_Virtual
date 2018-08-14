@@ -105,14 +105,16 @@ _________________________________________________________ -->
     <div class="navbar-collapse collapse" id="navigation">
       <ul class="nav navbar-nav navbar-left">
         <li class="active"> <%= link_to("Home", root_url, :"data-turbolinks" => false) %></li>
+        <li> <%= link_to("Produtos", catalogo_index_path, :"data-turbolinks" => false) %></li>
+        <li> <%= link_to("Meus Pedidos", pedidos_path, :"data-turbolinks" => false) %></li>
       </ul>
     </div>
     <!--/.nav-collapse -->
 
     <div class="navbar-buttons">
       <div class="navbar-collapse collapse right" id="basket-overview">
-        <%= link_to carrinho_index_path, class: "btn btn-primary navbar-btn" do %>
-          <i class="fa fa-shopping-cart"></i><span class="hidden-sm"><%= session[:carrinho].count if defined? (session[:carrinho].count) %>
+        <%= link_to carrinho_index_path, class: "btn btn-primary navbar-btn", style: "color:white" do %>
+          <i class="fa fa-shopping-cart"></i><span class="hidden-sm "><%= session[:carrinho].count if defined? (session[:carrinho].count) %>
         Itens no carrinho</span>
         <% end %>
       </div>
@@ -135,85 +137,14 @@ _________________________________________________________ -->
   <%= yield %>
 
   <!-- /#yield -->
-  <div class=" navbar-fixed-bottom">
-    <!-- *** FOOTER ***
-  _________________________________________________________ -->
-    <div id="footer" data-animate="fadeInUp">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-3 col-sm-6">
-            <h4>Pages</h4>
-            <ul>
-              <li><a href="text.html">About us</a>
-              </li>
-            </ul>
-            <hr>
-            <h4>User section</h4>
-            <ul>
-              <li><a href="#" data-toggle="modal" data-target="#login-modal">Login</a>
-              </li>
-              <li><a href="register.html">Regiter</a>
-              </li>
-            </ul>
-
-            <hr class="hidden-md hidden-lg hidden-sm">
-          </div>
-          <!-- /.col-md-3 -->
-          <div class="col-md-3 col-sm-6"></div>
-
-          <div class="col-md-3 col-sm-6">
-            <h4>Onde estamos</h4>
-            <p><strong></strong>
-              <br>
-              <br>
-              <strong></strong>
-            </p>
-            <hr class="hidden-md hidden-lg">
-          </div>
-          <!-- /.col-md-3 -->
-
-
-          <div class="col-md-3 col-sm-6">
-
-
-            <h4>Stay in touch</h4>
-
-            <p class="social">
-              <a href="#" class="facebook external" data-animate-hover="shake"><i class="fa fa-facebook"></i></a>
-              <a href="#" class="twitter external" data-animate-hover="shake"><i class="fa fa-twitter"></i></a>
-              <a href="#" class="instagram external" data-animate-hover="shake"><i class="fa fa-instagram"></i></a>
-              <a href="#" class="gplus external" data-animate-hover="shake"><i class="fa fa-google-plus"></i></a>
-              <a href="#" class="email external" data-animate-hover="shake"><i class="fa fa-envelope"></i></a>
-            </p>
-
-
-          </div>
-          <!-- /.col-md-3 -->
-
-        </div>
-        <!-- /.row -->
-      </div>
-      <!-- /.container -->
+  <!-- Footer -->
+  <footer class="page-footer font-small">
+    <!-- Copyright -->
+    <div class="footer-copyright text-center py-3">© 2018 Copyright:
+      <a href="#"> Cantina Virtual</a>
     </div>
-    <!-- /#footer -->
-
-    <!-- *** FOOTER END *** -->
-
-    <!-- *** COPYRIGHT ***
-    _________________________________________________________ -->
-    <div id="copyright">
-      <div class="container">
-        <div class="col-md-6">
-          <p class="pull-left">© 2018 Cantina Virtual.</p>
-        </div>
-        <div class="col-md-6">
-          <p class="pull-right"></a> </a>
-            <!-- Not removing these links is part of the license conditions of the template. Thanks for understanding :) If you want to use the template without the attribution links, you can do so after supporting further themes development at https://bootstrapious.com/donate  -->
-          </p>
-        </div>
-      </div>
-    </div>
-    <!-- *** COPYRIGHT END *** -->
-  </div>
+    <!-- Copyright -->
+  </footer>
+  <!-- Footer -->
 </body>
 </html>

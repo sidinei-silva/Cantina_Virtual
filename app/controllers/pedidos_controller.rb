@@ -5,7 +5,7 @@ class PedidosController < ApplicationController
   # GET /pedidos.json
   def index
     @pedidos = Pedido.all
-
+    @pedidos_cliente = pedidos_cliente
   end
 
   # GET /pedidos/1
@@ -71,6 +71,9 @@ class PedidosController < ApplicationController
   end
 
   private
+  def pedidos_cliente
+    @pedidos_cliente = Pedido.all.where(cliente_id: current_cliente)
+  end
   # Use callbacks to share common setup or constraints between actions.
   def set_pedido
     @pedido = Pedido.find(params[:id])
