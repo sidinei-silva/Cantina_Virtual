@@ -4,6 +4,7 @@ ActiveAdmin.register_page "Dashboard" do
 
   content title: proc {I18n.t("active_admin.dashboard")} do
 
+
     panel 'Recent Orders' do
       table_for Pedido.all.order('id desc').limit(10) do
         column 'Id do pedido', :id
