@@ -1,0 +1,81 @@
+<!--<div class="col-md-9" id="customer-orders">-->
+<!--  <div class="box">-->
+<!--    <div class="table-responsive">-->
+<!--      <table class="table table-hover table-condensed">-->
+<!--        <thead>-->
+
+<!--        <tr>-->
+<!--          <th>Pedido</th>-->
+<!--          <th>Data</th>-->
+<!--          <th>Total</th>-->
+<!--          <th>Status</th>-->
+<!--        </tr>-->
+
+<!--        </thead>-->
+<!--        <tbody>-->
+<%# Pedido.all.order('id desc').limit(10).each do |pedido| %>
+<!--          <tr>-->
+<!--            <th># <%#= pedido.id %></th>-->
+<!--            <td><%#= pedido.created_at.to_time.strftime("%m/%d/%Y") %></td>-->
+<!--            <td>RS: <%#=pedido.total_pedido %></td>-->
+<%# if pedido.status_pedido == "Pedido enviado"then @label = "label-info"end%>
+<%# if pedido.status_pedido == "Pedido em andamento"then @label = "label-warning"end%>
+<%# if pedido.status_pedido == "Pedido concluido"then @label = "label-success"end%>
+<%# if pedido.status_pedido == "Pedido cancelado"then @label = "label-danger"end%>
+<!--            <td><span class="label <%#=@label %> "><%#=pedido.status_pedido %></span>-->
+<!--            </td>-->
+<!--          </tr>-->
+<%# end %>
+<!--        </tbody>-->
+<!--      </table>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
+
+
+<!--<table border="0" cellspacing="0" cellpadding="0">-->
+<!--  <thead>-->
+<!--  <tr>-->
+<!--    <th class="col col-id_do_pedido">Id do pedido</th>-->
+<!--    <th class="col col-cliente">Cliente</th>-->
+<!--    <th class="col col-data_do_pedido">Data do pedido</th>-->
+<!--    <th class="col col-status">Status</th>-->
+<!--    <th class="col col-total_pedido">Total pedido</th>-->
+<!--  </tr>-->
+<!--  </thead>-->
+<!--  <tbody>-->
+  <%# Pedido.all.order('id desc').limit(10).each do |pedido| %>
+<!--    <tr class="odd accordion-toggle" id="pedido_<%#= pedido.id %>" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">-->
+<!--      <td class="col col-id_do_pedido"><%#= pedido.id %></td>-->
+<!--      <td class="col col-cliente"><%#= pedido.cliente %></td>-->
+<!--      <td class="col col-data_do_pedido"><%#= pedido.created_at %></td>-->
+<!--      <td class="col col-status">-->
+<!--        <span class="status_tag <%#= pedido.status_pedido %>"><%#= pedido.status_pedido %></span>-->
+<!--      </td>-->
+<!--      <td class="col col-total_pedido"><%#= number_to_currency pedido.total_pedido %></td>-->
+<!--    </tr>-->
+<!--    <div class="collapse" id="collapseExample">-->
+<!--      <div class="card card-body">-->
+<!--        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.-->
+<!--      </div>-->
+<!--    </div>-->
+  <%# end %>
+<!--  </tbody>-->
+<!--</table>-->
+
+
+
+Copy
+<p>
+  <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+    Link with href
+  </a>
+  <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+    Button with data-target
+  </button>
+</p>
+<div class="collapse" id="collapseExample">
+  <div class="card card-body">
+    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+  </div>
+</div>
