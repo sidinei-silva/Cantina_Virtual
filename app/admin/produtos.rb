@@ -19,7 +19,7 @@ ActiveAdmin.register Produto do
 
   form do |form|
     form.semantic_errors *form.object.errors.keys
-    form.inputs "Produto" do
+    form.inputs 'Produto' do
       form.input :nome_produto
       form.input :preco_produto, step: 0.1
       form.input :image, as: :file
@@ -30,7 +30,11 @@ ActiveAdmin.register Produto do
 
   show :title => :nome_produto do
     attributes_table do
-      default_main_content
+      row :nome_produto
+      row :descricao_produto
+      row('Valor produto') { |produto| number_to_currency produto.preco_produto}
+      row :esta_ativo
+      row :created_at
       row :image do |ad|
         image_tag url_for(ad.image)
       end
