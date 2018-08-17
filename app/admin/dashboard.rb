@@ -1,21 +1,8 @@
 ActiveAdmin.register_page "Dashboard" do
 
   menu priority: 1, label: proc {I18n.t("active_admin.dashboard")}
-
   content title: proc {I18n.t("active_admin.dashboard")} do
-
-    panel 'Recent Orders' do
-
-      table_for Pedido.all.order('id desc').limit(1) do
-        column 'Id do pedido', :id
-        column 'Cliente', :cliente, :nome_cliente
-        column 'Data do pedido', :created_at
-        column('Status') {|pedido| status_tag(pedido.status_pedido)}
-        column('Total pedido') {|pedido| number_to_currency pedido.total_pedido}
-
-      end
-    end
-    panel 'Recente 2' do
+    panel 'Pedidos recentes' do
       render 'admin/pedidos/recents'
     end
 
