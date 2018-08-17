@@ -32,7 +32,7 @@ class PedidosController < ApplicationController
     respond_to do |format|
       if @pedido.save
         session[:carrinho] = nil
-        format.html { redirect_to @pedido, notice: 'Pedido was successfully created.' }
+        format.html { redirect_to @pedido, notice: 'Pedido criado com sucesso.' }
         format.json { render :show, status: :created, location: @pedido }
       else
         format.html { render :new }
@@ -46,10 +46,10 @@ class PedidosController < ApplicationController
   def update
     respond_to do |format|
       if @pedido.update(pedido_params)
-        format.html { redirect_to @pedido, notice: 'Pedido was successfully updated.' }
+        format.html { redirect_to admin_root_path, notice: 'Pedido atualizado com sucesso.'}
         format.json { render :show, status: :ok, location: @pedido }
       else
-        format.html { render :edit }
+        format.html { redirect_to admin_root_path, notice: 'Não foi possivel atualizar o pedido.'}
         format.json { render json: @pedido.errors, status: :unprocessable_entity }
       end
     end
@@ -65,9 +65,6 @@ class PedidosController < ApplicationController
     end
   end
 
-  def get_name_acompanhamento
-
-  end
 
   private
   def pedidos_cliente
