@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   get 'catalogo/detalhes'
   get 'carrinho/index'
   post 'carrinho/index'
+  put 'admin/pedidos', to: 'pedidos#update'
+
 
   devise_for :clientes
   devise_for :admin_users, ActiveAdmin::Devise.config
