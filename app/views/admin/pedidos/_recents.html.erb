@@ -1,10 +1,14 @@
-<div class="buttons">
-  <input id="btn-show-all-children" type="button" value="Expandir tudo">
-  <input id="btn-hide-all-children" type="button" value="Encolher tudo">
-</div>
 
-<div class="container" style="padding: 0 10px">
-  <table id="example" class="display " cellspacing="0" width="100%">
+
+
+<h2 class="w3-center w3-panel">Pedidos recentes</h2>
+<div class="w3-panel w3-card w3-display-container">
+
+  <div class="w3-padding-large w3-border-0">
+    <input id="btn-show-all-children" type="button" value="Expandir tudo">
+    <input id="btn-hide-all-children" type="button" value="Encolher tudo">
+  </div>
+  <table id="example" class="display w3-mobile " cellspacing="0" width="100%">
     <thead>
     <tr>
       <th>Id do pedido</th>
@@ -13,13 +17,10 @@
       <th>Hora pedido</th>
       <th>Status</th>
       <th>Total pedido</th>
-      <th class="none">Produtos</th>
-      <th class="none">Acompanhamentos</th>
-      <th class="none">Motivo do cancelamento:</th>
+      <th class="none"><h3>Produtos</h3></th>
       <th class="none"></th>
     </tr>
     </thead>
-
     <tbody>
     <% Pedido.all.order('id desc').each do |pedido| %>
       <tr>
@@ -34,26 +35,25 @@
         <td>
           <ul>
             <% pedido.item_pedidos.each do |item_pedido| %>
-              <li><%= item_pedido.produto.nome_produto %></li>
+              <li><h6><%= item_pedido.produto.nome_produto %></h6>
+                <p><b>Acompanhamentos:</b></p>
+                <ul>
+                  <li>
+                    teste
+                  </li>
+                </ul>
+              </li>
             <% end %>
           </ul>
         </td>
-        <td>$320,800</td>
-        <td>$320,800</td>
         <td>
-          <div class="container">
-            <div class="row">
-              <div class="w3-display-container w3-mobile">
-                <button onclick="document.getElementById('preparar').style.display='block'" class="w3-button w3-deep-orange">Ir para preparo
-                </button>
-                <button onclick="document.getElementById('confirmar').style.display='block'" class="w3-button w3-green">Concluir pedido
-                </button>
-                <button onclick="document.getElementById('confirmar').style.display='block'" class="w3-button w3-red">Cancelar pedido
-                </button>
-              </div>
-
-
-            </div>
+          <div class="w3-mobile ">
+            <button onclick="document.getElementById('preparar').style.display='block'" class="w3-button w3-khaki">Ir para preparo
+            </button>
+            <button onclick="document.getElementById('confirmar').style.display='block'" class="w3-button w3-green">Concluir pedido
+            </button>
+            <button onclick="document.getElementById('cancelar').style.display='block'" class="w3-button w3-red">Cancelar pedido
+            </button>
           </div>
         </td>
       </tr>
@@ -61,10 +61,10 @@
       <%= render 'admin/pedidos/modal_confirmar', pedido: pedido %>
       <%= render 'admin/pedidos/modal_preparar', pedido: pedido %>
     <% end %>
+
     </tbody>
   </table>
+
 </div>
-
-
 
 

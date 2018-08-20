@@ -2,23 +2,21 @@
 
 <div id="cancelar" class="w3-modal">
   <div class="w3-modal-content w3-card-4 w3-animate-zoom" style="max-width:600px">
-
+    <header class="w3-container w3-teal">
+      <span onclick="document.getElementById('cancelar').style.display='none'"
+            class="w3-button w3-display-topright">&times;</span>
+      <h2>Confirmar pedido?</h2>
+    </header>
     <%= form_with(model: pedido, local: true) do |form| %>
-      <div class="w3-section">
-
-          <%= form.hidden_field :status_pedido, value: "Pedido concluido" %>
-          <%= button_tag "Concluir pedido" %>
-
-<!--        <label><b>Motivo do cancelamento</b></label>-->
-<!--        <input class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Enter Username" name="usrname" required>-->
-
+      <div class="w3-container">
+        <%= form.hidden_field :status_pedido, value: "Pedido concluido" %>
+        <h4 class="w3-text-black">Deseja confirmar pedido para entrega?</h4>
+        <b><%= form.label :motivo_cancelamento %></b>
+        <%= form.text_field :motivo_cancelamento, class:"w3-input w3-border w3-margin-bottom" , placeholder:"Insira o motivo do cancelamento" %>
       </div>
-
       <div class="w3-container w3-border-top w3-padding-16">
-
-<!--        <button onclick="document.getElementById('id01').style.display='none'" type="button" class="w3-button w3-red">Cancelar</button>-->
-<!--        <button class="w3-button w3-green w3-right" type="submit">Confirmar</button>-->
-      </div>
+        <button onclick="document.getElementById('cancelar').style.display='none'" type="button" class="w3-button w3-red  ">Cancelar</button>
+        <%= button_tag "Confirmar", class:"w3-button w3-green w3-right" %></div>
     <% end %>
 
   </div>

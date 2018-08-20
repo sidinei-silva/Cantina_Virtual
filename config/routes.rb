@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   get 'catalogo/detalhes'
   get 'carrinho/index'
   post 'carrinho/index'
-  put 'admin/pedidos', to: 'pedidos#update'
+  put '/admin', to: 'pedidos#update'
 
 
   devise_for :clientes
