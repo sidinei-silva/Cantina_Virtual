@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_13_035801) do
+ActiveRecord::Schema.define(version: 2018_08_21_151515) do
 
   create_table "acompanhamentos", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.decimal "preco_acompanhamento", precision: 8, scale: 2
@@ -120,6 +120,7 @@ ActiveRecord::Schema.define(version: 2018_08_13_035801) do
     t.bigint "cliente_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "motivo_cancelamento"
     t.index ["cliente_id"], name: "index_pedidos_on_cliente_id"
   end
 

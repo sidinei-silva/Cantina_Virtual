@@ -80,6 +80,7 @@ class PedidosController < ApplicationController
     params.require(:pedido).permit(
       :status_pedido,
       :total_pedido,
+      :motivo_cancelamento,
       :cliente_id,
       item_pedidos_attributes:
       [

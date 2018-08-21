@@ -17,7 +17,8 @@
       <th>Hora pedido</th>
       <th>Status</th>
       <th>Total pedido</th>
-      <th class="none"><h3>Produtos</h3></th>
+      <th class="none" ><h3>Produtos</h3></th>
+      <th class="none" style="border: none"></th>
       <th class="none"></th>
     </tr>
     </thead>
@@ -29,39 +30,58 @@
         <td><%= pedido.created_at.strftime("%m/%d/%Y") %></td>
         <td><%= pedido.created_at.strftime("%T") %></td>
         <td>
-          <span class="status_tag <%= pedido.status_pedido %>"><%= pedido.status_pedido %></span>
+          <% if pedido.status_pedido == "Pedido concluido" %>
+            <span class="w3-green status_tag <%= pedido.status_pedido %>"><%= pedido.status_pedido %></span>
+          <% elsif pedido.status_pedido == "Pedido em preparo"%>
+            <span class="w3-khaki status_tag <%= pedido.status_pedido %>"><%= pedido.status_pedido %></span>
+          <% elsif pedido.status_pedido == "Pedido cancelado"%>
+            <span class="w3-red status_tag <%= pedido.status_pedido %>"><%= pedido.status_pedido %></span>
+          <% else %>
+            <span class="status_tag <%= pedido.status_pedido %>"><%= pedido.status_pedido %></span>
+          <%end %>
         </td>
         <td class="col col-id_do_pedido"><%= number_to_currency pedido.total_pedido %></td>
-        <td>
+        <td style="border: none; !important;">
           <ul>
             <% pedido.item_pedidos.each do |item_pedido| %>
-              <li><h6><%= item_pedido.produto.nome_produto %></h6>
+              <li style="border: none;!important"><h5><%= item_pedido.produto.nome_produto %></h5>
                 <p><b>Acompanhamentos:</b></p>
                 <ul>
-                  <li>
-                    teste
-                  </li>
+                    <% ItemAcompanhamento.all.where(item_pedido: item_pedido.id).each do |item_acompanhamento| %>
+                      <% Acompanhamento.all.where(id: item_acompanhamento.acompanhamento_id).each do |acompanhamento| %>
+                      <li style="border: none;!important">
+                        <%= acompanhamento.nome_acompanhamento %>
+                      </li>
+                      <% end %>
+                    <%end %>
                 </ul>
               </li>
             <% end %>
           </ul>
         </td>
+        <td style="border: none; !important;">
+          <%if pedido.status_pedido == "Pedido cancelado" %>
+            <h6 class="w3-red">Motivo cancelamento:</h6>
+            <p><%= pedido.motivo_cancelamento %></p>
+          <%end %>
+        </td>
         <td>
-          <div class="w3-mobile ">
-            <button onclick="document.getElementById('preparar').style.display='block'" class="w3-button w3-khaki">Ir para preparo
-            </button>
-            <button onclick="document.getElementById('confirmar').style.display='block'" class="w3-button w3-green">Concluir pedido
-            </button>
-            <button onclick="document.getElementById('cancelar').style.display='block'" class="w3-button w3-red">Cancelar pedido
-            </button>
-          </div>
+          <%unless pedido.status_pedido == "Pedido concluido" || pedido.status_pedido == "Pedido cancelado" %>
+            <div class="w3-mobile ">
+              <button onclick="document.getElementById('preparar[<%=pedido.id %>]').style.display='block'" class="w3-button w3-khaki">Ir para preparo
+              </button>
+              <button onclick="document.getElementById('confirmar[<%=pedido.id %>]').style.display='block'" class="w3-button w3-green">Concluir pedido
+              </button>
+              <button onclick="document.getElementById('cancelar[<%=pedido.id %>]').style.display='block'" class="w3-button w3-red">Cancelar pedido
+              </button>
+            </div>
+          <%end %>
         </td>
       </tr>
-      <%= render 'admin/pedidos/modal_cancelar', pedido: pedido %>
-      <%= render 'admin/pedidos/modal_confirmar', pedido: pedido %>
-      <%= render 'admin/pedidos/modal_preparar', pedido: pedido %>
+      <%= render 'admin/pedidos/modal_cancelar', pedido:pedido%>
+      <%= render 'admin/pedidos/modal_confirmar', pedido:pedido%>
+      <%= render 'admin/pedidos/modal_preparar', pedido:pedido%>
     <% end %>
-
     </tbody>
   </table>
 
