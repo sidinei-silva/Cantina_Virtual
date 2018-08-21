@@ -41,7 +41,7 @@
         </tr>
         </thead>
         <tbody>
-        <% @pedido.item_pedidos.each_with_index do |item_pedido, count_loop| %>
+        <% @pedido.item_pedidos.each do |item_pedido| %>
           <tr>
             <td>
               <% if item_pedido.produto.image.attached? %>
@@ -53,10 +53,16 @@
             <td><%= item_pedido.produto.nome_produto %></td>
             <td>RS: <%= item_pedido.produto.preco_produto %></td>
             <td>
-
+              <% ItemAcompanhamento.all.where(item_pedido: item_pedido.id).each do |item_acompanhamento| %>
+                <% Acompanhamento.all.where(id: item_acompanhamento.acompanhamento_id).each do |acompanhamento| %>
+                  <li style="border: none;!important">
+                    <%= acompanhamento.nome_acompanhamento %>
+                  </li>
+                <% end %>
+              <%end %>
             </td>
-            <td>R$: <%= item_pedido.total_item_pedido %></td>
 
+            <td>R$: <%= item_pedido.total_item_pedido %></td>
           </tr>
         <% end %>
         </tbody>
@@ -69,10 +75,12 @@
       </table>
     </div>
     <!-- /.table-responsive -->
-
     <%= link_to 'Back', pedidos_path, class: "btn btn-primary " %>
+    <%if @pedido.status_pedido == "Pedido enviado" %>
+      <button onclick="document.getElementById('cancelar[<%=@pedido.id %>]').style.display='block'" class="w3-button w3-red">Cancelar pedido
+      </button>
+    <% end %>
   </div>
-
 </div>
 
-
+<%= render 'admin/pedidos/modal_cancelar', pedido:@pedido%>

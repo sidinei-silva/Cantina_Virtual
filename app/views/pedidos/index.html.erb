@@ -68,8 +68,10 @@
           </td>
           <td>
             <%= link_to 'Ver', pedido , class: "btn btn-primary btn-sm"%>
+
           </td>
         </tr>
+          <%= render 'admin/pedidos/modal_cancelar', pedido:pedido%>
         <% end %>
         </tbody>
       </table>

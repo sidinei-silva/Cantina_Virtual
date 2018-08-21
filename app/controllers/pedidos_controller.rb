@@ -46,10 +46,10 @@ class PedidosController < ApplicationController
   def update
     respond_to do |format|
       if @pedido.update(pedido_params)
-        format.html { redirect_to admin_root_path, notice: 'Pedido atualizado com sucesso.'}
+        format.html { redirect_to request.referrer, notice: 'Pedido atualizado com sucesso.'}
         format.json { render :show, status: :ok, location: @pedido }
       else
-        format.html { redirect_to admin_root_path, notice: 'Não foi possivel atualizar o pedido.'}
+        format.html { redirect_to request.referrer, notice: 'Não foi possivel atualizar o pedido.'}
         format.json { render json: @pedido.errors, status: :unprocessable_entity }
       end
     end

@@ -17,18 +17,20 @@
       <th>Hora pedido</th>
       <th>Status</th>
       <th>Total pedido</th>
+      <th class="none"></th> <!-- Ultima atualização -->
       <th class="none" ><h3>Produtos</h3></th>
-      <th class="none" style="border: none"></th>
-      <th class="none"></th>
+      <th class="none" style="border: none"></th> <!-- Motivo cancelamento -->
+      <th class="none"><h6>Ações</h6></th>
     </tr>
     </thead>
     <tbody>
-    <% Pedido.all.order('id desc').each do |pedido| %>
+    <% Pedido.all.order(updated_at: :desc).each do |pedido| %>
       <tr>
         <td><%= pedido.id %></td>
         <td><%= pedido.cliente.email %></td>
         <td><%= pedido.created_at.strftime("%m/%d/%Y") %></td>
         <td><%= pedido.created_at.strftime("%T") %></td>
+
         <td>
           <% if pedido.status_pedido == "Pedido concluido" %>
             <span class="w3-green status_tag <%= pedido.status_pedido %>"><%= pedido.status_pedido %></span>
@@ -37,10 +39,11 @@
           <% elsif pedido.status_pedido == "Pedido cancelado"%>
             <span class="w3-red status_tag <%= pedido.status_pedido %>"><%= pedido.status_pedido %></span>
           <% else %>
-            <span class="status_tag <%= pedido.status_pedido %>"><%= pedido.status_pedido %></span>
+            <span class="w3-cyan status_tag <%= pedido.status_pedido %>"><%= pedido.status_pedido %></span>
           <%end %>
         </td>
         <td class="col col-id_do_pedido"><%= number_to_currency pedido.total_pedido %></td>
+        <td><% pedido.updated_at %></td>
         <td style="border: none; !important;">
           <ul>
             <% pedido.item_pedidos.each do |item_pedido| %>

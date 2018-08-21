@@ -1,7 +1,7 @@
 <div id="preparar[<%=pedido.id %>]" class="w3-modal">
   <div class="w3-modal-content w3-card-4 w3-animate-zoom" style="max-width:600px">
     <header class="w3-container w3-teal">
-      <span onclick="document.getElementById('preparar').style.display='none'"
+      <span onclick="document.getElementById('preparar[<%=pedido.id %>]').style.display='none'"
             class="w3-button w3-display-topright">&times;</span>
       <h2>Preparar pedido?</h2>
     </header>
@@ -11,7 +11,7 @@
         <h4 class="w3-text-black">Deseja confirmar pedido para preparo?</h4>
       </div>
       <div class="w3-container w3-border-top w3-padding-16">
-        <button onclick="document.getElementById('preparar').style.display='none'" type="button" class="w3-button w3-red  ">Cancelar</button>
+        <button onclick="document.getElementById('preparar[<%=pedido.id %>]').style.display='none'" type="button" class="w3-button w3-red  ">Cancelar</button>
         <%= form.submit "Confirmar", class:"w3-button w3-green w3-right" %></div>
     <% end %>
   </div>

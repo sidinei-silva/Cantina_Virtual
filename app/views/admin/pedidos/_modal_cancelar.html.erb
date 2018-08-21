@@ -1,9 +1,8 @@
 
-
-<div id="cancelar[<%=pedido.id %>]" class="w3-modal">
+<div id="cancelar[<%=pedido.id %>]" class="w3-modal" >
   <div class="w3-modal-content w3-card-4 w3-animate-zoom" style="max-width:600px">
     <header class="w3-container w3-teal">
-      <span onclick="document.getElementById('cancelar').style.display='none'"
+      <span onclick="document.getElementById('cancelar[<%=pedido.id %>]').style.display='none'"
             class="w3-button w3-display-topright">&times;</span>
       <h2>Confirmar pedido?</h2>
     </header>
@@ -15,9 +14,10 @@
         <%= form.text_field :motivo_cancelamento, class:"w3-input w3-border w3-margin-bottom" , placeholder:"Insira o motivo do cancelamento" %>
       </div>
       <div class="w3-container w3-border-top w3-padding-16">
-        <button onclick="document.getElementById('cancelar').style.display='none'" type="button" class="w3-button w3-red  ">Cancelar</button>
+        <button onclick="document.getElementById('cancelar[<%=pedido.id %>]').style.display='none'" type="button" class="w3-button w3-red " data-dismiss="modal">Cancelar</button>
         <%= button_tag "Confirmar", class:"w3-button w3-green w3-right" %></div>
     <% end %>
 
   </div>
 </div>
+

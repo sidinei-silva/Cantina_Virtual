@@ -1,6 +1,7 @@
 $(document).ready(function (){
     var table = $('#example').DataTable({
-        'responsive': true
+        'responsive': true,
+        'order': [[6, "desc"]]
     });
 
     // Handle click on "Expand All" button
