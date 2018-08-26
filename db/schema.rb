@@ -12,7 +12,10 @@
 
 ActiveRecord::Schema.define(version: 2018_08_21_151515) do
 
-  create_table "acompanhamentos", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
+  create_table "acompanhamentos", force: :cascade do |t|
     t.decimal "preco_acompanhamento", precision: 8, scale: 2
     t.string "nome_acompanhamento"
     t.boolean "esta_ativo"
@@ -22,7 +25,7 @@ ActiveRecord::Schema.define(version: 2018_08_21_151515) do
     t.index ["produto_id"], name: "index_acompanhamentos_on_produto_id"
   end
 
-  create_table "active_admin_comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
     t.text "body"
     t.string "resource_type"
@@ -36,7 +39,7 @@ ActiveRecord::Schema.define(version: 2018_08_21_151515) do
     t.index ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id"
   end
 
-  create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
     t.bigint "record_id", null: false
@@ -46,7 +49,7 @@ ActiveRecord::Schema.define(version: 2018_08_21_151515) do
     t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
   end
 
-  create_table "active_storage_blobs", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "active_storage_blobs", force: :cascade do |t|
     t.string "key", null: false
     t.string "filename", null: false
     t.string "content_type"
@@ -57,7 +60,7 @@ ActiveRecord::Schema.define(version: 2018_08_21_151515) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
-  create_table "admin_users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "admin_users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
@@ -74,7 +77,7 @@ ActiveRecord::Schema.define(version: 2018_08_21_151515) do
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
   end
 
-  create_table "clientes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "clientes", force: :cascade do |t|
     t.string "nome_cliente"
     t.string "status_cliente"
     t.datetime "created_at", null: false
@@ -93,7 +96,7 @@ ActiveRecord::Schema.define(version: 2018_08_21_151515) do
     t.index ["reset_password_token"], name: "index_clientes_on_reset_password_token", unique: true
   end
 
-  create_table "item_acompanhamentos", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "item_acompanhamentos", force: :cascade do |t|
     t.decimal "preco_item_acompanhamento", precision: 8, scale: 2
     t.bigint "item_pedido_id"
     t.bigint "acompanhamento_id"
@@ -103,7 +106,7 @@ ActiveRecord::Schema.define(version: 2018_08_21_151515) do
     t.index ["item_pedido_id"], name: "index_item_acompanhamentos_on_item_pedido_id"
   end
 
-  create_table "item_pedidos", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "item_pedidos", force: :cascade do |t|
     t.integer "quantidade_item_pedido"
     t.decimal "total_item_pedido", precision: 8, scale: 2
     t.bigint "produto_id"
@@ -114,7 +117,7 @@ ActiveRecord::Schema.define(version: 2018_08_21_151515) do
     t.index ["produto_id"], name: "index_item_pedidos_on_produto_id"
   end
 
-  create_table "pedidos", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "pedidos", force: :cascade do |t|
     t.string "status_pedido"
     t.decimal "total_pedido", precision: 8, scale: 2
     t.bigint "cliente_id"
@@ -124,7 +127,7 @@ ActiveRecord::Schema.define(version: 2018_08_21_151515) do
     t.index ["cliente_id"], name: "index_pedidos_on_cliente_id"
   end
 
-  create_table "produtos", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "produtos", force: :cascade do |t|
     t.string "nome_produto"
     t.string "descricao_produto"
     t.decimal "preco_produto", precision: 8, scale: 2
