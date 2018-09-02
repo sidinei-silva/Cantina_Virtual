@@ -35,6 +35,7 @@ ActiveAdmin.register Acompanhamento do
     attributes_table do
       row :nome_acompanhamento
       row ("Preco acompanhamento") {|acompanhamento| number_to_currency acompanhamento.preco_acompanhamento}
+      row :esta_ativo
     end
 
   end

@@ -42,10 +42,10 @@ class AcompanhamentosController < ApplicationController
   def update
     respond_to do |format|
       if @acompanhamento.update(acompanhamento_params)
-        format.html { redirect_to @acompanhamento, notice: 'Acompanhamento was successfully updated.' }
+        format.html { redirect_to request.referrer, notice: 'Acompanhamento was successfully created.'}
         format.json { render :show, status: :ok, location: @acompanhamento }
       else
-        format.html { render :edit }
+        format.html { redirect_to request.referrer, notice: 'Acompanhamento não alterado'  }
         format.json { render json: @acompanhamento.errors, status: :unprocessable_entity }
       end
     end

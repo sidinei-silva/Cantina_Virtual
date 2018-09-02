@@ -2,5 +2,5 @@
 #= require active_admin/base
 #= require active_material
 #= require datatable/datatables.min
-#= require datatable/tablerecents
 #= require_tree ./datatable
+#= require datatable/tablerecents

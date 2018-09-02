@@ -16,43 +16,68 @@
                 <div class="container-fluid">
                   <h2 class="text-center"><%= @produto.nome_produto %></h2>
                   <div class="goToDescription"><a href="#details" class="scroll-to">Ver descrição do produto </a></div>
-                  <span class="lead  ">R$ <%= @produto.preco_produto %></span>
+                  <span class="lead  ">
+                    <%if @produto.esta_ativo? %>
+                      R$ <%= @produto.preco_produto %>
+                    <% else %>
+                      <del>R$ <%= @produto.preco_produto %></del>
+                    <% end %>
+                  </span>
                 </div>
                 <hr>
                 <div class="container-fluid">
                   <p><b style="font-size: small" class="font-weight-bold">Nome do produto: </b><%= @produto.nome_produto %></p>
-                  <p><b style="font-size: small" class="font-weight-bold">Disponibilidade : </b><span class="text-success">Disponivel</span></p>
+                  <p><b style="font-size: small" class="font-weight-bold">Disponibilidade : </b>
+                    <%if @produto.esta_ativo? %>
+                      <span class="text-success">Disponível</span>
+                    <% else %>
+                      <span class="text-danger">Indisponível</span>
+                    <%end %>
+                  </p>
                 </div>
                 <hr>
-                <div class="container-fluid">
-                  <p class="text-large">Acompanhamentos</p><br>
-                  <%= hidden_field_tag 'item[produto_id]', @produto.id %>
-                  <div class="form-group">
-                    <%= collection_check_boxes(:item, :acompanhamento_id, @acompanhamento.all, :id, :nome_acompanhamento) do |b| %>
-                      <div class="form-check">
-                        <%= b.label class: "form-check-label", for: b.object.id do %>
-                          <%= b.check_box class: "form-check-input", id: b.object.id %>
-                          <%= b.text %>
-                          (<b> + </b><span id=preco_acompanhamento><%= b.object.preco_acompanhamento %></span>)
-                        <% end %>
-                      </div>
-                    <% end %>
-                  </div>
+                <%if @produto.esta_ativo? %>
+                  <div class="container-fluid">
+                    <p class="text-large">Acompanhamentos</p><br>
+                    <%= hidden_field_tag 'item[produto_id]', @produto.id %>
+                    <div class="form-group">
+                      <%= collection_check_boxes(:item, :acompanhamento_id, @acompanhamento.all, :id, :nome_acompanhamento) do |acompanhamento| %>
+                        <div class="form-check">
 
-                </div>
-                <hr>
-                <div class="text-center">
-                  <h3 class="">Total:</h3>
-                  <h2 id="valorTotal"> R$: </h2>
-                  <%= hidden_field_tag 'valor_total_item' %>
-                </div>
-                <div class="container-fluid">
-                  <div class="actions text-center">
-                    <%= form.button :submit, :class => "btn btn-success" do %>
-                      <i class="fa fa-shopping-cart"></i> Add to cart
-                    <% end %>
+                          <%= acompanhamento.label class: "form-check-label ", for: acompanhamento.object.id do %>
+                            <%= acompanhamento.check_box class: "form-check-input ", id: acompanhamento.object.id %>
+                            <%= acompanhamento.text %>
+                            (<b> + </b><span id=preco_acompanhamento><%= acompanhamento.object.preco_acompanhamento %></span>)
+                            <%unless acompanhamento.object.esta_ativo?%>
+                              <span class="text-danger"><b> - Indisponível</b></span>
+                            <% end %>
+                          <% end %>
+                        </div>
+                        <%unless acompanhamento.object.esta_ativo?%>
+                          <script type="text/javascript" charset="utf-8">
+                              $(function() {
+                                  $("#<%=acompanhamento.object.id %>").prop("disabled", true);
+                              });
+                          </script>
+                        <% end %>
+                      <% end %>
+                    </div>
                   </div>
-                </div>
+                  <hr>
+                  <div class="text-center">
+                    <h3 class="">Total:</h3>
+                    <h2 id="valorTotal"> R$: </h2>
+                    <%= hidden_field_tag 'valor_total_item' %>
+                  </div>
+                  <div class="container-fluid">
+                    <div class="actions text-center">
+
+                        <%= form.button :submit, :class => "btn btn-success" do %>
+                          <i class="fa fa-shopping-cart"></i> Add to cart
+                        <% end %>
+                    </div>
+                  </div>
+                <% end %>
               </div>
             </div>
           </div>
@@ -60,8 +85,7 @@
             <p>
             <h4>Descrição do Produto</h4>
             <blockquote>
-              <p><em>Define style this season with Armani's new range of trendy tops, crafted with intricate details.
-                Create a chic statement look by teaming this lace number with skinny jeans and pumps.</em>
+              <p><em><%= @produto.descricao_produto %></em>
               </p>
             </blockquote>
             <h4>Acompanhamentos</h4>
@@ -101,4 +125,5 @@
             }
         });
     });
+
 </script>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_21_151515) do
+ActiveRecord::Schema.define(version: 2018_09_02_074529) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 2018_08_21_151515) do
   create_table "acompanhamentos", force: :cascade do |t|
     t.decimal "preco_acompanhamento", precision: 8, scale: 2
     t.string "nome_acompanhamento"
-    t.boolean "esta_ativo"
+    t.boolean "esta_ativo", default: true
     t.bigint "produto_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -131,7 +131,7 @@ ActiveRecord::Schema.define(version: 2018_08_21_151515) do
     t.string "nome_produto"
     t.string "descricao_produto"
     t.decimal "preco_produto", precision: 8, scale: 2
-    t.boolean "esta_ativo"
+    t.boolean "esta_ativo", default: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

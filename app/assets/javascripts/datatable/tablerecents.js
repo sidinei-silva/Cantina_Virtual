@@ -15,4 +15,9 @@ $(document).ready(function (){
         // Collapse row details
         table.rows('.parent').nodes().to$().find('td:first-child').trigger('click');
     });
+
+    var table = $('.desabilitar_itens').DataTable({
+        'responsive': true,
+
+    });
 });

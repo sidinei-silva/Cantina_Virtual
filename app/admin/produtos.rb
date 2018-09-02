@@ -24,6 +24,7 @@ ActiveAdmin.register Produto do
       form.input :preco_produto, step: 0.1
       form.input :image, as: :file
       form.input :descricao_produto
+      form.input :esta_ativo
     end
     form.actions
   end

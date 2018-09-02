@@ -1,0 +1,42 @@
+
+<div class="w3-panel w3-card w3-display-container">
+
+  <table class="desabilitar_itens display w3-mobile " cellspacing="0" width="100%">
+    <thead>
+    <tr>
+      <th>Id</th>
+      <th>Nome do produto</th>
+      <th>Data do produto</th>
+      <th>Disponibilidade</th>
+      <th>Ação</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    <% Produto.all.each do |produto| %>
+      <tr>
+        <td><%= produto.id %></td>
+        <td><%= produto.nome_produto %></td>
+        <td><%= produto.created_at.strftime("%m/%d/%Y") %></td>
+        <td>
+          <% if produto.esta_ativo %>
+            <span class="w3-green status_tag <%= produto.esta_ativo %>">Sim</span>
+           <% else %>
+            <span class="w3-red status_tag <%= produto.esta_ativo %>">Não</span>
+          <% end %>
+        </td>
+        <td>
+          <div class="w3-mobile ">
+            <button onclick="document.getElementById('disponibilidade[<%=produto.id %>]').style.display='block'" class="w3-button w3-khaki">Mudar disponibilidade
+            </button>
+          </div>
+        </td>
+      </tr>
+      <%= render 'admin/desabilitar_itens/produto', produto:produto%>
+    <% end %>
+    </tbody>
+  </table>
+
+</div>
+
+

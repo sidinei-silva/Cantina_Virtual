@@ -1,69 +1,6 @@
 <div id="all">
   <div id="content">
-    <div class="container">
-      <div class="col-md-12">
-        <div id="main-slider">
-          <div class="item">
-            <%= image_tag("template/main-slider.jpg", class: "img-responsive") %>
-            <div class="border-radius:10px; img-responsive" style="transform: translate(-50%, -50%); left: 50%; top: 50%; position: absolute; width: 80%">
-              <div class=" box same-height" style="background: rgba(255,255,255,0.9)">
-                <h3>Noticia 1</h3>
-                <p>We are known to provide best possible service ever</p>
-              </div>
-            </div>
-          </div>
-          <div class="item">
-            <%= image_tag("template/main-slider.jpg", class: "img-responsive") %>
-            <div class="border-radius:10px; img-responsive" style="transform: translate(-50%, -50%); left: 50%; top: 50%; position: absolute; width: 80%">
-              <div class=" box same-height" style="background: rgba(255,255,255,0.9)">
-                <h3>Noticia 1</h3>
-                <p>We are known to provide best possible service ever</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- /#main-slider -->
-      </div>
-    </div>
-    <div id="advantages">
-      <div class="container">
-        <div class="same-height-row">
-          <div class="col-sm-4">
-            <div class="box same-height clickable">
-              <div class="icon"><i class="fa fa-exclamation"></i>
-              </div>
 
-              <h3><a href="#">Noticia 2</a></h3>
-              <p>We are known to provide best possible service ever</p>
-            </div>
-          </div>
-
-          <div class="col-sm-4">
-            <div class="box same-height clickable">
-              <div class="icon"><i class="fa fa-exclamation"></i>
-              </div>
-              <h3><a href="#">Noticia 3</a></h3>
-              <p>You can check that the height of the boxes adjust when longer text like this one is used in one of
-                them.</p>
-            </div>
-          </div>
-          <!-- /.row -->
-          <div class="col-sm-4">
-            <div class="box same-height clickable">
-              <div class="icon"><i class="fa fa-exclamation"></i>
-              </div>
-
-              <h3><a href="#">Noticia 4</a></h3>
-              <p>Free returns on everything for 3 months.</p>
-            </div>
-            <!-- /.box-->
-          </div>
-          <!-- /.row -->
-        </div>
-        <!-- /.row -->
-      </div>
-      <!-- /.container -->
-    </div>
     <!-- /#advantages -->
 
     <!-- *** ADVANTAGES END *** -->
@@ -85,28 +22,10 @@ _________________________________________________________ -->
       <div class="container">
         <div class="product-slider">
           <% @produtos.each do |produto| %>
-
-            <div class="item">
+            <%if produto.esta_ativo? %>
+              <!-- ESTA ATIVO -->
+              <div class="item">
               <div class="product">
-                <div class="flip-container">
-                  <div class="flipper">
-                    <div class="front">
-                      <% if produto.image.attached? %>
-                        <%= link_to catalogo_detalhes_path(produto) do %>
-                          <%= image_tag produto.image, class: "img-responsive" %>
-                        <% end %>
-                      <% end %>
-                    </div>
-                    <div class="back">
-                      <% if produto.image.attached? %>
-                        <%= link_to catalogo_detalhes_path(produto) do %>
-                          <%= image_tag produto.image, class: "img-responsive" %>
-                        <% end %>
-                      <% end %>
-
-                    </div>
-                  </div>
-                </div>
                 <% if produto.image.attached? %>
                   <%= link_to catalogo_detalhes_path(produto) do %>
                     <%= image_tag produto.image, class: "img-responsive" %>
@@ -120,6 +39,29 @@ _________________________________________________________ -->
               </div>
               <!-- /.product -->
             </div>
+              <!--NÃO ESTA ATIVO -->
+            <%else%>
+              <div class="item">
+                <div class="product">
+                  <% if produto.image.attached? %>
+                    <%= link_to catalogo_detalhes_path(produto), style: "pointer-events: none; color: gray;"  do %>
+                      <%= image_tag produto.image, class: "img-responsive" %>
+                    <% end %>
+                  <% end %>
+                  <div class="text">
+                    <h3><%= link_to produto.nome_produto, catalogo_detalhes_path(produto), style: "pointer-events: none; color: gray;"  %></h3>
+                    <p class="price"><del>R$: <%= produto.preco_produto %></del></p>
+                  </div>
+                  <div class="ribbon sale ">
+                    <div class="theribbon">Indisponível</div>
+                    <div class="ribbon-background "></div>
+                  </div>
+                  <!-- /.ribbon -->
+                  <!-- /.text -->
+                </div>
+                <!-- /.product -->
+              </div>
+            <%end%>
           <% end %>
         </div>
         <!-- /.product-slider -->

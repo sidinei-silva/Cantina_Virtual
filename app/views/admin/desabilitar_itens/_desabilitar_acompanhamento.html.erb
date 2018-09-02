@@ -1,0 +1,43 @@
+
+<div class="w3-panel w3-card w3-display-container">
+
+  <table class="desabilitar_itens display w3-mobile " cellspacing="0" width="100%">
+    <thead>
+    <tr>
+      <th>Id</th>
+      <th>Nome do Acompanhamento</th>
+      <th>Produto</th>
+      <th>Data do Acompanhamento</th>
+      <th>Disponibilidade</th>
+      <th>Ação</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% Acompanhamento.all.each do |acompanhamento| %>
+      <tr>
+        <td><%= acompanhamento.id %></td>
+        <td><%= acompanhamento.nome_acompanhamento%></td>
+        <td><%= acompanhamento.produto.nome_produto %></td>
+        <td><%= acompanhamento.created_at.strftime("%m/%d/%Y") %></td>
+        <td>
+          <% if acompanhamento.esta_ativo %>
+            <span class="w3-green status_tag <%= acompanhamento.esta_ativo %>">Sim</span>
+          <% else %>
+            <span class="w3-red status_tag <%= acompanhamento.esta_ativo %>">Não</span>
+          <% end %>
+        </td>
+        <td>
+          <div class="w3-mobile ">
+            <button onclick="document.getElementById('disponibilidade_acompanhamento[<%=acompanhamento.id %>]').style.display='block'" class="w3-button w3-khaki">Mudar disponibilidade
+            </button>
+          </div>
+        </td>
+      </tr>
+      <%= render 'admin/desabilitar_itens/acompanhamento', acompanhamento:acompanhamento%>
+    <% end %>
+    </tbody>
+  </table>
+
+</div>
+
+

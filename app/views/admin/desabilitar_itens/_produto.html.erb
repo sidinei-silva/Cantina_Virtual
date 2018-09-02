@@ -1,0 +1,22 @@
+<div id="disponibilidade[<%=produto.id %>]" class="w3-modal">
+  <div class="w3-modal-content w3-card-4 w3-animate-zoom" style="max-width:600px">
+    <header class="w3-container w3-teal">
+      <span onclick="document.getElementById('disponibilidade[<%=produto.id %>]').style.display='none'"
+            class="w3-button w3-display-topright">&times;</span>
+      <h2>Alterar disponibilidade?</h2>
+    </header>
+    <%= form_with(model: produto, local: true) do |form| %>
+      <div class="w3-container">
+        <% if produto.esta_ativo? %>
+          <%= form.hidden_field :esta_ativo, value: false %>
+        <%else %>
+          <%= form.hidden_field :esta_ativo, value: true %>
+        <%end %>
+        <h4 class="w3-text-black">Deseja confirmar mudança?</h4>
+      </div>
+      <div class="w3-container w3-border-top w3-padding-16">
+        <button onclick="document.getElementById('disponibilidade[<%=produto.id %>]').style.display='none'" type="button" class="w3-button w3-red  ">Cancelar</button>
+        <%= form.submit "Confirmar", class:"w3-button w3-green w3-right" %></div>
+    <% end %>
+  </div>
+</div>
