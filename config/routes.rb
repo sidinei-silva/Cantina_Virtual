@@ -5,6 +5,9 @@ Rails.application.routes.draw do
   get 'catalogo/detalhes'
   get 'carrinho/index'
   post 'carrinho/index'
+  get 'carrinho', to: 'carrinho#index'
+  post 'carrinho/remove', to: 'carrinho#remove'
+  post 'carrinho/recuperar_cart', to: 'carrinho#recuperar_carrinho'
   put '/admin', to: 'pedidos#update'
 
 

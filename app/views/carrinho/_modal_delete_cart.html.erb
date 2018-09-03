@@ -1,0 +1,47 @@
+<!-- Modal -->
+<div class="modal fade" id="<%= position_produto %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header bg-warning"
+           style="
+          -webkit-border-top-left-radius: 5px;
+          -webkit-border-top-right-radius: 5px;
+          -moz-border-radius-topleft: 5px;
+          -moz-border-radius-topright: 5px;
+          border-top-left-radius: 5px;
+          border-top-right-radius: 5px;"
+      >
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title text-center" id="exampleModalLabel">Remover do carrinho</h4>
+
+      </div>
+      <div class="modal-body">
+
+        <h5>Deseja remover item do carrinho?</h5>
+        Produto:
+        <ul>
+          <li><%= produto.nome_produto %></li>
+          <li>
+            Acompanhamentos:
+            <% @acompanhamentos_item_info[position_produto].each do |acompanhamento| %>
+              <ul>
+                <%= acompanhamento.nome_acompanhamento %> (+ <%= acompanhamento.preco_acompanhamento %>)
+              </ul>
+            <% end %>
+          </li>
+
+        </ul>
+      </div>
+      <div class="modal-footer">
+        <%=form_tag({controller: 'carrinho', action: :remove}, method: :post) do %>
+          <%= hidden_field_tag(:item_position, position_produto)%>
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+
+          <%= submit_tag("Remover", class: "btn btn-primary") %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

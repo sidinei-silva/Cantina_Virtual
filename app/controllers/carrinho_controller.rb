@@ -25,6 +25,23 @@ class CarrinhoController < ApplicationController
     end
   end
 
+  def remove
+    item_position = params[:item_position].to_i
+    session[:recuperar_carrinho] = session[:carrinho].values_at(item_position)
+    respond_to do |format|
+      if session[:carrinho].delete_at(item_position)
+        format.html { redirect_to carrinho_index_url, notice: "Item removido do carrinho", alert: "Deseja desfazer remoção?"}
+      end
+    end
+  end
+
+  def recuperar_carrinho
+    respond_to do |format|
+      if carrinho_insert << session[:recuperar_carrinho][0]
+        format.html { redirect_to carrinho_index_url, notice: "Item recuperado do carrinho"}
+      end
+    end
+  end
   private
 
   def carrinho_insert
