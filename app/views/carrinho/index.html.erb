@@ -3,6 +3,17 @@
     <div class="container">
       <div class="col-md-10 col-md-push-1" id="basket">
 
+        <% if alert != nil %>
+          <div class="alert-danger" style="margin-bottom: 1%">
+
+            <p class=" pull-left alert"><%= alert %></p>
+            <%= button_to "Desfazer",carrinho_recuperar_cart_path, style: "background: none; border: none;
+                              color: black;
+                              "
+            %>
+          </div>
+        <% end %>
+
         <div class="box">
           <h1>Carrinho de Compras</h1>
           <p class="text-muted">Você tem <%= session[:carrinho].count if defined? (session[:carrinho]).count %>
@@ -110,32 +121,69 @@
 
 
             <div class="pull-right"> &emsp; </div>
-            <div class="pull-right">
-              <button class="btn btn-default"><i class="fa fa-refresh"></i> Update basket</button>
-            </div>
+
 
           </div>
 
 
         </div>
         <!-- /.box -->
-        <% if alert != nil %>
 
-          <p class=" alert alert-danger text-center"><%= alert %></p>
-          <%= button_to "Desfazer", carrinho_recuperar_cart_path, class:"test" %>
-          <%= form_tag(carrinho_recuperar_cart_path, :method => :post, :class => 'internal')%>
-          <%= link_to 'Save', "", :onclick=>"$('.button_to').submit()" %>
-
-
-        <% end %>
 
       </div>
       <!-- /.col-md-9 -->
 
     </div>
     <!-- /.container -->
+
   </div>
   <!-- /#content -->
+  <div id="content">
+    <div class="container">
+      <div class="col-md-10 col-md-push-1" id="basket">
+        <div id="hot">
+
+          <div class="box">
+            <h3 class="text-center">Comprar mais produtos</h3>
+          </div>
+
+          <% if flash[:notProduto] %>
+            <div class="alert alert-danger text-center"><%= flash[:notProduto] %></div>
+          <% end %>
+
+          <div class="container">
+            <div class="product-slider">
+              <% Produto.all.each do |produto| %>
+                <%if produto.esta_ativo? %>
+                  <!-- ESTA ATIVO -->
+                  <div class="item">
+                    <div class="product">
+                      <% if produto.image.attached? %>
+                        <%= link_to catalogo_detalhes_path(produto) do %>
+                          <%= image_tag produto.image, class: "img-responsive" %>
+                        <% end %>
+                      <% end %>
+                      <div class="text">
+                        <h3><%= link_to produto.nome_produto, catalogo_detalhes_path(produto) %></h3>
+                        <p class="price">R$: <%= produto.preco_produto %></p>
+                      </div>
+                      <!-- /.text -->
+                    </div>
+                    <!-- /.product -->
+                  </div>
+                  <!--NÃO ESTA ATIVO -->
+                <%end%>
+              <% end %>
+            </div>
+            <!-- /.product-slider -->
+          </div>
+          <!-- /.container -->
+
+        </div>
+        <!-- /#hot -->
+      </div>
+    </div>
+  </div>
 </div>
 <!-- /#all -->
 <%end %>
