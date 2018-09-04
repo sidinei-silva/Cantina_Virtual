@@ -8,11 +8,11 @@
 // $sidebar-width: 242px;
 
 // Active Admin's got SASS!
-@import "active_admin/mixins";
+//@import "active_admin/mixins";
 //@import "active_admin/base";
 @import "active_material";
 @import "datatable/datatables/css/datatables";
-//@import "datatable/*";
+
 @import "w3css/w3";
 
 // Overriding any non-variable SASS must be done after the fact.
