@@ -1,6 +1,6 @@
 ActiveAdmin.register_page "Desabilitar itens" do
-  menu priority: 4
-  content title: "Desabilitar Itens" do
+  menu priority: 2
+  content title: "Desabilitar itens" do
     tabs do
       tab :produto do
 
