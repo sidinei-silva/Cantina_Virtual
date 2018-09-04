@@ -294,7 +294,7 @@ DEPENDENCIES
   pundit
   rails (~> 5.2.1)
   rails_12factor
-  sass-rails (~> 5.0)
+  sass-rails
   selenium-webdriver
   turbolinks (~> 5)
   tzinfo-data
