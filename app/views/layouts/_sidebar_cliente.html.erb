@@ -10,13 +10,13 @@ _________________________________________________________ -->
     <div class="panel-body">
 
       <ul class="nav nav-pills nav-stacked">
-        <li class="active">
+        <li>
           <%= link_to pedidos_path do %>
             <i class="fa fa-list"></i> Meus pedidos</a>
           <% end %>
         </li>
         <li>
-          <a href=""><i class="fa fa-user"></i> Minha conta</a>
+          <a href="<%= edit_cliente_registration_path %>"><i class="fa fa-user"></i> Minha conta</a>
         </li>
         <li>
           <%= link_to destroy_cliente_session_path, method: :delete, class: 'navbar-link' do %>

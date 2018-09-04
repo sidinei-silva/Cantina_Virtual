@@ -1,6 +1,10 @@
 class ClientesController < ApplicationController
   before_action :set_cliente, only: [:show, :edit, :update, :destroy]
 
+  def edit_profile
+    @cliente = current_cliente
+  end
+
   # GET /clientes
   # GET /clientes.json
   def index

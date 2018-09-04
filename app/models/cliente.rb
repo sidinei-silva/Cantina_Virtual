@@ -6,4 +6,5 @@ class Cliente < ApplicationRecord
   has_many :pedidos, :dependent => :destroy
 
 
+
 end
