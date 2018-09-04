@@ -20,9 +20,9 @@
         <td><%= produto.created_at.strftime("%m/%d/%Y") %></td>
         <td>
           <% if produto.esta_ativo %>
-            <span class="w3-green status_tag <%= produto.esta_ativo %>">Sim</span>
+            <span class="w3-green status_tag <%= produto.esta_ativo %>">Disponível</span>
            <% else %>
-            <span class="w3-red status_tag <%= produto.esta_ativo %>">Não</span>
+            <span class="w3-red status_tag <%= produto.esta_ativo %>">Indisponível</span>
           <% end %>
         </td>
         <td>

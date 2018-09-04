@@ -1,53 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="Rails Cantina_Virtual: test" uuid="5eac1cb2-30de-43bd-b159-a020b5dc7317">
-      <driver-ref>mysql</driver-ref>
+    <data-source source="LOCAL" name="PostgreSQL - Cantina_Virtual_production@production" uuid="603a3d80-9aa9-44ae-bcb8-3dc041493bd9">
+      <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>
-      <imported>true</imported>
-      <remarks>$PROJECT_DIR$/config/database.yml</remarks>
-      <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql://127.0.0.1:3306/Cantina_Virtual_test</jdbc-url>
-      <driver-properties>
-        <property name="autoReconnect" value="true" />
-        <property name="yearIsDateType" value="false" />
-        <property name="characterEncoding" value="utf8" />
-        <property name="zeroDateTimeBehavior" value="convertToNull" />
-        <property name="characterSetResults" value="utf8" />
-        <property name="tinyInt1isBit" value="false" />
-      </driver-properties>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://localhost:5432/Cantina_Virtual_production</jdbc-url>
     </data-source>
-    <data-source source="LOCAL" name="Rails Cantina_Virtual: development" uuid="11b6e67f-3763-4ba1-992d-fe0666dfdd01">
-      <driver-ref>mysql</driver-ref>
+    <data-source source="LOCAL" name="Rails Cantina_Virtual: development" uuid="47527778-5b6d-4a0e-9e90-0cac7ca40a01">
+      <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>
-      <imported>true</imported>
-      <remarks>$PROJECT_DIR$/config/database.yml</remarks>
-      <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql://127.0.0.1:3306/Cantina_Virtual_development</jdbc-url>
-      <driver-properties>
-        <property name="autoReconnect" value="true" />
-        <property name="yearIsDateType" value="false" />
-        <property name="characterEncoding" value="utf8" />
-        <property name="zeroDateTimeBehavior" value="convertToNull" />
-        <property name="characterSetResults" value="utf8" />
-        <property name="tinyInt1isBit" value="false" />
-      </driver-properties>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://localhost:5432/Cantina_Virtual_development</jdbc-url>
     </data-source>
-    <data-source source="LOCAL" name="Rails Cantina_Virtual: production" uuid="33def827-3bf2-4904-8de2-39c25703012f">
-      <driver-ref>mysql</driver-ref>
+    <data-source source="LOCAL" name="Rails Cantina_Virtual: test" uuid="cc722569-e9b9-4eb6-8398-5fb37c4a8bf5">
+      <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>
-      <imported>true</imported>
-      <remarks>$PROJECT_DIR$/config/database.yml</remarks>
-      <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql://127.0.0.1:3306/Cantina_Virtual_production</jdbc-url>
-      <driver-properties>
-        <property name="autoReconnect" value="true" />
-        <property name="yearIsDateType" value="false" />
-        <property name="characterEncoding" value="utf8" />
-        <property name="zeroDateTimeBehavior" value="convertToNull" />
-        <property name="characterSetResults" value="utf8" />
-        <property name="tinyInt1isBit" value="false" />
-      </driver-properties>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://localhost:5432/Cantina_Virtual_test</jdbc-url>
     </data-source>
   </component>
 </project>
